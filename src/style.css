@@ -122,11 +122,16 @@ nav, .hero-section {
     justify-content: space-evenly;
     align-items: center;
     height: 95px;
-    padding: 20px;
+    padding: 20px 0;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.hero-div:hover {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(316deg) brightness(101%) contrast(97%);
 }
 
 .rent-type, .icons-name {
-    cursor: pointer;
     /* background-color: crimson; */
 
 }

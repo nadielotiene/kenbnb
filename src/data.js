@@ -12,7 +12,7 @@ export default [
             reviewCount: 6
         },
         isFavorite: false,
-        imageUrl: "https://source.unsplash.com/WLxQvbMyfas"
+        imageUrl: "https://images.unsplash.com/photo-1610375229632-c7158c35a537?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         id: "2",
@@ -27,7 +27,7 @@ export default [
             reviewCount: 6
         },
         isFavorite: false,
-        imageUrl: "https://source.unsplash.com/JmuyB_LibRo"
+        imageUrl: "https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?q=80&w=1432&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         id: "3",
@@ -42,6 +42,6 @@ export default [
             reviewCount: 6
         },
         isFavorite: false,
-        imageUrl: "https://source.unsplash.com/3PeSjpLVtLg"
+        imageUrl: "https://images.unsplash.com/photo-1663150848604-74b3bd874484?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8R2VpcmFuZ2VyZmpvcmR8ZW58MHx8MHx8fDA%3D"
     }
 ]

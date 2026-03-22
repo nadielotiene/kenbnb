@@ -1,5 +1,3 @@
-import React from "react"
-
 export default function Navbar() {
     return (
         <nav className="nav-div">
@@ -13,7 +11,7 @@ export default function Navbar() {
                 <img className="search-icon" src="/search.png" alt="search" /></button>
             <span className="user-span">
                 <button className="renter-btn">
-                    Kenbnb your home
+                    Become a host
                 </button>
                 <button className="globe-btn">
                     <img className="globe" src="/globe.png" alt="globe" />
