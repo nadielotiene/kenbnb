@@ -11,7 +11,7 @@ export default function Card(props) {
             />
             <img
                 className="card-favorite"
-                src={`../public/${props.heartIcon}`}
+                src={`/${props.heartIcon}`}
                 onClick={props.toggleClick}
             />
             <span className="title-span">
