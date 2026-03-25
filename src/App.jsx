@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import './style.css'
 import iconData from "./iconData"
 import data from "./data"
@@ -9,25 +9,27 @@ import Footer from "./components/Footer"
 import { useState } from 'react'
 
 export default function App() {
-  const [heart, setHeart] = useState({
-    isFavorite: false
-  })
+  const [heart, setHeart] = useState(
+    data.map(place => ({ id: place.id, isFavorite: false }))
+  )
 
-  let heartIcon = heart.isFavorite ? "heart-full.png" : "heart-empty.png"
-
-  function toggleFavorite() {
-    setHeart(prevState => ({
-      ...prevState,
-      isFavorite: !prevState.isFavorite
-    }))
+  function toggleFavorite(id) {
+    setHeart(prevState =>
+      prevState.map(item =>
+        item.id === id
+          ? { ...item, isFavorite: !item.isFavorite } : item
+      )
+    )
   }
 
   const cards = data.map(place => {
+    const heartState = heart.find(item => item.id === place.id)
+    const heartIcon = heartState?.isFavorite ? "heart-full.png" : "heart-empty.png"
     return (
       <Card
         key={place.id}
         {...place}
-        toggleClick={toggleFavorite}
+        toggleClick={() => toggleFavorite(place.id)}
         heartIcon={heartIcon}
       />
     )
@@ -49,10 +51,6 @@ export default function App() {
         {hero}
       </section>
       <section className="cards-list">
-        {cards}
-        {cards}
-        {cards}
-        {cards}
         {cards}
       </section>
       <Footer />
