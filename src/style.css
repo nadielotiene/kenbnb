@@ -55,6 +55,10 @@ nav, .hero-section {
 
 /*~~~*/
 
+button, .logo, .nav-title {
+    cursor: pointer;
+}
+
 .search-btn {
     border: none;
     border-radius: 100px;
@@ -116,7 +120,55 @@ nav, .hero-section {
     flex-direction: row;
     margin-top: 80px;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 40px;
+
+    overflow: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hero-section::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-wrapper {
+    position: fixed;
+    top: 125px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #FFF;
+    z-index: 2;
+}
+
+.hero-arrow {
+    position: absolute;
+    z-index: 2;
+    background: #FFF;
+    border: #DDD solid 1px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.hero-arrow.left { left: 10px; }
+.hero-arrow.right { right: 10px; }
+
+.hero-arrow:hover {
+    background-color: #F5F5F5;
+}
+
+.hero-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .hero-div {
@@ -126,17 +178,13 @@ nav, .hero-section {
     align-items: center;
     height: 95px;
     padding: 20px 0;
-    margin: 0 20px;
+    margin: 0 10px;
     cursor: pointer;
 }
 
 .hero-div:hover {
     filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(316deg) brightness(101%) contrast(97%);
-}
-
-.rent-type, .icons-name {
-    /* background-color: crimson; */
-
+    border-bottom: 1px solid #FF595F;
 }
 
 .rent-type {
@@ -148,15 +196,6 @@ nav, .hero-section {
     font-size: 12px;
     padding: 4px;
 }
-
-/* .filters-icon {
-    width: 25px;
-} */
-
-/* a.icons-name:hover {
-    border-bottom: #DDD solid 2px;
-
-} */
 
 /*~~~~~~~~~~~~~~~Card~~~~~~~~~~~~~~~*/
 
@@ -182,7 +221,8 @@ nav, .hero-section {
     cursor: pointer;
     object-fit: cover;
     height: 270px;
-    width: 270px;
+    /* width: 270px; */
+    width: 13.5rem;
 }
 
 .card-favorite {
