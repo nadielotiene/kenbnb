@@ -7,10 +7,13 @@ export default function Navbar() {
                     kenbnb
                 </h2>
             </span>
-            <button className="search-btn">Anywhere ⎪ Any week ⎪ Add guests
+            <button className="search-btn">
+                <span className="full-text">Anywhere ⎪ Any week ⎪ Add guests</span> 
+                <span className="mid-text">Start your search</span> 
+                <span className="short-text">Search</span> 
                 <img className="search-icon" src="/search.png" alt="search" /></button>
             <span className="user-span">
-                <button className="renter-btn">
+                <button className="render-btn">
                     Become a host
                 </button>
                 <button className="globe-btn">
