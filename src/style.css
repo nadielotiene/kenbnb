@@ -60,6 +60,7 @@ button, .logo, .nav-title {
 }
 
 .search-btn {
+    font-family: 'Poppins', sans-serif;
     border: none;
     border-radius: 100px;
     display: flex;
@@ -187,7 +188,7 @@ button, .logo, .nav-title {
     align-items: center;
     height: 95px;
     padding: 20px 0;
-    margin: 0 10px;
+    margin: 0 20px;
     cursor: pointer;
 }
 
