@@ -53,7 +53,7 @@ async function main() {
         location: "Miami, Florida",
         price: 275,
         rating: 4.9,
-        imageUrl: "https://images.unsplash.com/photo-1505916349660-8d91a99f28b4?w=800",
+        imageUrl: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
         startDate: "May 20",
         endDate: "27",
         googleMapsUrl: "https://maps.google.com",

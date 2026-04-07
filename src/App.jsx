@@ -1,7 +1,6 @@
 // import React from "react"
 import './style.css'
 import iconData from "./iconData"
-import data from "./data"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import Card from "./components/Card"
@@ -9,8 +8,35 @@ import Footer from "./components/Footer"
 import { useState, useRef, useEffect } from 'react'
 
 export default function App() {
-
   const heroRef = useRef(null);
+  const [scrollState, setScrollState] = useState({ left: false, right: true });
+  const [listings, setListings] = useState([]);
+  const [heart, setHeart] = useState([]);
+
+  // Fetch listings from backend
+  useEffect(() => {
+    fetch('http://localhost:3001/api/listings')
+    .then(res => res.json())
+    .then(data => {
+      setListings(data)
+      setHeart(data.map(item => ({ id: item.id, isFavorite: false })))
+    })
+  }, [])
+
+  // Hero scroll
+  useEffect(() => {
+    const el = heroRef.current
+    function checkScroll() {
+      setScrollState({
+        left: el.scrollLeft > 0,
+        right: el.scrollLeft < el.scrollWidth - el.clientWidth
+      })
+    }
+    checkScroll()
+    window.addEventListener("resize", checkScroll)
+    return () => window.removeEventListener("resize", checkScroll)
+  }, [])
+
   function scrollHero(direction) {
     heroRef.current.scrollBy({
       left: direction === "left" ? -300 : 300,
@@ -18,7 +44,6 @@ export default function App() {
     })
   }
 
-  const [scrollState, setScrollState] = useState({ left: false, right: true })
   function handleScroll() {
     const el = heroRef.current
     setScrollState({
@@ -26,27 +51,7 @@ export default function App() {
       right: el.scrollLeft < el.scrollWidth - el.clientWidth
     })
   }
-
-  useEffect(() => {
-    const el = heroRef.current
-
-    function checkScroll() {
-      setScrollState({
-        left: el.scrollLeft > 0,
-        right: el.scrollLeft < el.scrollWidth - el.clientWidth
-      })
-    }
-
-    checkScroll()
-    window.addEventListener("resize", checkScroll)
-
-    return () => window.removeEventListener("resize", checkScroll)
-  }, [])
-
-  const [heart, setHeart] = useState(
-    data.map(place => ({ id: place.id, isFavorite: false }))
-  )
-
+  
   function toggleFavorite(id) {
     setHeart(prevState =>
       prevState.map(item =>
@@ -56,7 +61,11 @@ export default function App() {
     )
   }
 
-  const cards = data.map(place => {
+  // const [heart, setHeart] = useState(
+  //   data.map(place => ({ id: place.id, isFavorite: false }))
+  // )
+
+  const cards = listings.map(place => {
     const heartState = heart.find(item => item.id === place.id)
     const heartIcon = heartState?.isFavorite ? "heart-full.png" : "heart-empty.png"
     return (
@@ -69,14 +78,9 @@ export default function App() {
     )
   })
 
-  const hero = iconData.map(icon => {
-    return (
-      <Hero
-        key={icon.id}
-        {...icon}
-      />
-    )
-  })
+  const hero = iconData.map(icon => (
+      <Hero key={icon.id} {...icon} />
+  ))
 
   return (
     <>
@@ -96,9 +100,9 @@ export default function App() {
         disabled={!scrollState.right}
       >›</button>
     </div>
-      <section className="hero-section">
+      {/* <section className="hero-section">
         {hero}
-      </section>
+      </section> */}
       <section className="cards-list">
         {cards}
       </section>

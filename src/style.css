@@ -224,6 +224,7 @@ button, .logo, .nav-title {
     flex-direction: column;
     margin: 12px;
     padding: 0.2em;
+    width: 280px;
 }
 
 .place-photo {
@@ -232,15 +233,17 @@ button, .logo, .nav-title {
     object-fit: cover;
     height: 270px;
     /* width: 270px; */
-    width: 13.5rem;
+    width: 100%;
 }
 
 .card-favorite {
     cursor: pointer;
     width: 25px;
-    position: relative;
-    bottom: 260px;
-    left: 230px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+    left: auto;
 }
 
 .title-span {
