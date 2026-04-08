@@ -12,7 +12,20 @@ app.use(express.json());
 
 app.get('/api/listings', async (req, res) => {
   try {
-		const listings = await prisma.listing.findMany();
+		const { location, minPrice, maxPrice } = req.query
+
+		const listings = await prisma.listing.findMany({
+			where: {
+				...(location && {
+					location: {
+						contains: location,
+					}
+				}),
+				...(minPrice && { price: { gte: parseFloat(minPrice) } }),
+				...(maxPrice && { price: { lte: parseFloat(maxPrice) } }),
+			}
+		});
+
 		res.json(listings);
 	} catch (error) {
 		res.status(500).json({ error: 'Something went wrong '});

@@ -209,12 +209,42 @@ button, .logo, .nav-title {
 
 /*~~~~~~~~~~~~~~~Card~~~~~~~~~~~~~~~*/
 
+/* --- */
+.filters {
+  display: flex;
+  /* gap: 12px; */
+  justify-content: center;
+  margin: 180px 20px 0 20px;
+  padding: 16px;
+}
+
+.filters input {
+  padding: 10px 16px;
+  border: #DDD solid 1px;
+  /* border-radius: 100px; */
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+.location { border-radius: 100px 0 0 100px; }
+
+/* .min-price { border-color: red; } */
+
+.max-price { border-radius: 0 100px 100px 0; }
+
+.filters input:focus {
+  border-color: #FF595F;
+}
+/* --- */
+
 .cards-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    margin: 200px 20px 50px 20px;
+    /* margin: 200px 20px 50px 20px; */
+    margin: 20px 20px 50px 20px;
 }
 
 .card-div {

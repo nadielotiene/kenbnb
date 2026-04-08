@@ -12,16 +12,26 @@ export default function App() {
   const [scrollState, setScrollState] = useState({ left: false, right: true });
   const [listings, setListings] = useState([]);
   const [heart, setHeart] = useState([]);
+  const [filters, setFilters] = useState({
+    location: '',
+    minPrice: '',
+    maxPrice: ''
+  })
 
   // Fetch listings from backend
   useEffect(() => {
-    fetch('http://localhost:3001/api/listings')
+    const params = new URLSearchParams()
+    if (filters.location) params.append('location', filters.location)
+    if (filters.minPrice) params.append('minPrice', filters.minPrice)
+    if (filters.maxPrice) params.append('maxPrice', filters.maxPrice)
+
+    fetch(`http://localhost:3001/api/listings?${params}`)
     .then(res => res.json())
     .then(data => {
       setListings(data)
       setHeart(data.map(item => ({ id: item.id, isFavorite: false })))
     })
-  }, [])
+  }, [filters])
 
   // Hero scroll
   useEffect(() => {
@@ -61,10 +71,6 @@ export default function App() {
     )
   }
 
-  // const [heart, setHeart] = useState(
-  //   data.map(place => ({ id: place.id, isFavorite: false }))
-  // )
-
   const cards = listings.map(place => {
     const heartState = heart.find(item => item.id === place.id)
     const heartIcon = heartState?.isFavorite ? "heart-full.png" : "heart-empty.png"
@@ -100,9 +106,32 @@ export default function App() {
         disabled={!scrollState.right}
       >›</button>
     </div>
-      {/* <section className="hero-section">
-        {hero}
-      </section> */}
+
+    <div className="filters">
+      <input 
+        className="location"
+        type="text"
+        placeholder="Search by location..."
+        value={filters.location}
+        onChange={e => setFilters(prev => ({ ...prev, location: e.target.value }))}
+      />
+      <input 
+        className="min-price"
+        type="number"
+        placeholder="Min price"
+        value={filters.minPrice}
+        onChange={e => setFilters(prev => ({ ...prev, minPrice: e.target.value }))}
+      />
+      <input 
+        className="max-price"
+        type="number"
+        placeholder="Max price"
+        value={filters.maxPrice}
+        onChange={e => setFilters(prev => ({ ...prev, maxPrice: e.target.value }))}
+      />
+      {/* <div className="filter__btn"><img className="search-icon" src="/search.png" alt="search" /></div> */}
+    </div>
+
       <section className="cards-list">
         {cards}
       </section>
