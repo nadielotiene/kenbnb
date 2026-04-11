@@ -1,11 +1,13 @@
 // import React from "react"
-import './style.css'
-import iconData from "./iconData"
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import Card from "./components/Card"
-import Footer from "./components/Footer"
-import { useState, useRef, useEffect } from 'react'
+import './style.css';
+import iconData from "./iconData";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Card from "./components/Card";
+import Footer from "./components/Footer";
+import ListingDetail from "./components/ListingDetail"
+import { useState, useRef, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 export default function App() {
   const heroRef = useRef(null);
@@ -17,6 +19,8 @@ export default function App() {
     minPrice: '',
     maxPrice: ''
   })
+
+  const navigate = useNavigate();
 
   // Fetch listings from backend
   useEffect(() => {
@@ -80,6 +84,7 @@ export default function App() {
         {...place}
         toggleClick={() => toggleFavorite(place.id)}
         heartIcon={heartIcon}
+        onClick={() => navigate(`/listings/${place.id}`)}
       />
     )
   })
@@ -88,7 +93,7 @@ export default function App() {
       <Hero key={icon.id} {...icon} />
   ))
 
-  return (
+  const homePage = (
     <>
     <Navbar />
     <div className="hero-wrapper">
@@ -136,6 +141,16 @@ export default function App() {
         {cards}
       </section>
       <Footer />
+    </>
+  )
+
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={homePage} />
+        <Route path="/listings/:id" element={<ListingDetail />} />
+      </Routes>
     </>
   )
 }

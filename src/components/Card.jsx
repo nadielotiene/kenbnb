@@ -6,6 +6,7 @@ export default function Card(props) {
                     className="place-photo"
                     src={props.imageUrl}
                     alt={props.title}
+                    onClick={props.onClick}
                     crossOrigin="anonymous"
                 />
                 <img

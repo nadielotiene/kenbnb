@@ -32,6 +32,18 @@ app.get('/api/listings', async (req, res) => {
 	}
 })
 
+app.get('/api/listings/:id', async (req, res) => {
+	try {
+		const listing = await prisma.listing.findUnique({
+			where: { id: parseInt(req.params.id) }
+		})
+		if (!listing) return res.status(404).json({ error: 'Listing not found' })
+		res.json(listing)
+	} catch (error) {
+		res.status(500).json({ error: 'Something went wrong' })
+	}
+})
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
 	console.log(`Server running on http://localhost:${PORT}`);
