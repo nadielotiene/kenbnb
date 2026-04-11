@@ -40,6 +40,8 @@ export default function App() {
   // Hero scroll
   useEffect(() => {
     const el = heroRef.current
+    if (!el) return
+
     function checkScroll() {
       setScrollState({
         left: el.scrollLeft > 0,
