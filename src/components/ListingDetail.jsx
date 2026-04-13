@@ -22,10 +22,8 @@ export default function ListingDetail() {
   return (
     <div className="detail-container">
       <button className="detail-back" onClick={() => navigate('/')}>← Back</button>
-
-      <h1 className="detail-title">{listing.tile}</h1>
+      <h1 className="detail-title">{listing.title}</h1>
       <p className="detail-location">📍 {listing.location}</p>
-
       <img 
         className="detail-photo" 
         src={listing.imageUrl} 

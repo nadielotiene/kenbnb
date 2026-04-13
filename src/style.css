@@ -370,10 +370,10 @@ a:hover {
 
 /*~~~~~~~~~~~~~~~Listing Detail~~~~~~~~~~~~~~~*/
 
-.detail-conatainer {
+.detail-container {
     max-width: 900px;
     margin: 100px auto 50px auto;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .detail-back {
@@ -385,7 +385,7 @@ a:hover {
     font-family: 'Poppins', sans-serif;
 }
 
-.datail-title {
+.detail-title {
     font-size: 26px;
     font-weight: 600;
     margin-bottom: 4px;
@@ -445,7 +445,7 @@ a:hover {
     width: 100%;
 }
 
-detail-reserve:hover {
+.detail-reserve:hover {
     background-color: #E04e54;
 }
 

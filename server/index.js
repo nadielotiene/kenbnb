@@ -44,6 +44,33 @@ app.get('/api/listings/:id', async (req, res) => {
 	}
 })
 
+app.post('/api/bookings', async (req, res) => {
+	try {
+		const { listingId, checkIn, checkOut, guests, totalPrice } = req.body
+
+		// Check for date overlap
+		const existingBooking = await prisma.booking.findFirst({
+			where: {
+				listingId,
+				OR: [
+					{ checkIn: { lte: checkOut}, checkOut: {gte: checkIn} }
+				]
+			}
+		})
+		if (existingBooking) {
+			return res.status(409).json({ error: 'Those dates area already booked' })
+		}
+
+		const booking = await prisma.booking.create({
+			data: { listingId, checkIn, checkOut, guests, totalPrice }
+		})
+
+		res.status(201).json(booking)
+	} catch (error) {
+		res.status(500).json({error: 'Something went wrong' })
+	}
+})
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
 	console.log(`Server running on http://localhost:${PORT}`);

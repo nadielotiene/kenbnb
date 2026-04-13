@@ -6,6 +6,19 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+                
+model Booking { 
+  id            Int       @id @default(autoincrement())
+  listingId     Int
+  checkIn       String
+  checkOut      String
+  guests        Int
+  totalPrice    Float
+  status        String    @default("confirmed")
+  createdAt     DateTime  @default(now())
+
+  listing       Listing   @relation(fields: [listingId], references: [id])
+}
 
 model Listing {
   id            Int       @id @default(autoincrement())
@@ -19,4 +32,5 @@ model Listing {
   googleMapsUrl String
   isSuperhost   Boolean   @default(false)
   createdAt     DateTime  @default(now())
-}
+  bookings      Booking[]
+}               

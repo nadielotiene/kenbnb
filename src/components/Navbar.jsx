@@ -1,12 +1,14 @@
 export default function Navbar() {
     return (
         <nav className="nav-div">
-            <span className="logo-span">
+            {/* <span > */}
+            <a className="logo-span" href="/">
                 <img className="logo" src="/airbnb.png" alt="airbnb logo" />
                 <h2 className="nav-title">
                     kenbnb
                 </h2>
-            </span>
+            </a>
+            {/* </span> */}
             <div className="search-btn">
                 <span className="full-text">Anywhere ⎪ Any week ⎪ Add guests</span> 
                 <span className="mid-text">Start your search</span> 
