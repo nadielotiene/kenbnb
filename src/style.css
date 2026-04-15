@@ -454,3 +454,56 @@ a:hover {
     margin-top: 200px;
     font-size: 18px;
 }
+
+/*~~~~~~~~~~~~~~~ booking ~~~~~~~~~~~~~~~*/
+
+.booking-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.booking-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: grey;
+    text-transform: uppercase;
+}
+
+.booking-field input {
+    padding: 8px 12px;
+    border: #DDD solid 1px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.booking-field input:focus {
+    border-color: #FF595F;
+}
+
+.booking-total {
+    font-size: 16px;
+}
+
+.booking-total span {
+    font-weight: 600;
+}
+
+.booking-success {
+    color: green;
+    font-size: 14px;
+}
+
+.booking-error {
+    color: crimson;
+    font-size: 14px;
+}
