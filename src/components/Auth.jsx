@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import API_URL from '../config'
 
 export default function Auth({ onLogin }) {
 	const [searchParams] = useSearchParams()
@@ -18,7 +19,7 @@ export default function Auth({ onLogin }) {
 			: { name, email, password }
 
 		try {
-			const res = await fetch(`http://localhost:3001/api/auth/${endpoint}`, {
+			const res = await fetch(`${API_URL}/api/auth/${endpoint}`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body)

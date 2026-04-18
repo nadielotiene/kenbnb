@@ -9,6 +9,7 @@ import ListingDetail from "./components/ListingDetail"
 import Auth from './components/Auth'
 import { useState, useRef, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import API_URL from './config';
 
 export default function App() {
   const heroRef = useRef(null);
@@ -30,7 +31,7 @@ export default function App() {
     if (filters.minPrice) params.append('minPrice', filters.minPrice)
     if (filters.maxPrice) params.append('maxPrice', filters.maxPrice)
 
-    fetch(`http://localhost:3001/api/listings?${params}`)
+    fetch(`${API_URL}/api/listings?${params}`)
     .then(res => res.json())
     .then(data => {
       setListings(data)

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import API_URL from '../config'
 
 export default function ListingDetail() {
   const { id } = useParams()
@@ -12,7 +13,7 @@ export default function ListingDetail() {
   const [bookingStatus, setBookingStatus] = useState(null)
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/listings/${id}`)
+    fetch(`${API_URL}/api/listings/${id}`)
     .then(res => res.json())
     .then(data => {
       setListing(data)
@@ -47,7 +48,7 @@ export default function ListingDetail() {
     }
 
     try {
-      const res = await fetch('http://localhost:3001/api/bookings', {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
