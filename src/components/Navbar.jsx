@@ -1,4 +1,8 @@
-export default function Navbar() {
+import { useNavigate } from 'react-router-dom'
+
+export default function Navbar({ user, onLogout }) {
+    const navigate = useNavigate()
+
     return (
         <nav className="nav-div">
             {/* <span > */}
@@ -22,10 +26,18 @@ export default function Navbar() {
                 <button className="globe-btn">
                     <img className="globe" src="/globe.png" alt="globe" />
                 </button>
-                <button className="user-menu-btn">
-                    <img className="menu" src="/menu.png" alt="globe" />
-                    <img className="user" src="/user.png" alt="user" />
-                </button>
+
+                {user ? (
+                    <button className="user-menu-btn" onClick={onLogout}>
+                        <img className="menu" src="/menu.png" alt="menu" />
+                        <span style={{ fontSize: '14px', marginLeft: '4px' }}>{user.name}</span>
+                    </button>
+                ) : (
+                    <button className="user-menu-btn" onClick={() => navigate('/login')}>
+                        <img className="menu" src="/menu.png" alt="menu" />
+                        <img className="user" src="/user.png" alt="user" />
+                    </button>
+                )}
             </span>
         </nav>
     )

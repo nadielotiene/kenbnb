@@ -68,7 +68,10 @@ export default function ListingDetail() {
     <div className="detail-container">
       <button className="detail-back" onClick={() => navigate('/')}>← Back</button>
       <h1 className="detail-title">{listing.title}</h1>
-      <p className="detail-location">📍 <img src="public/red-pin.png" alt="red pin" /> {listing.location}</p>
+      <p className="detail-location">
+        <img src="/red-pin.svg" alt="red pin" />
+        {listing.location}
+      </p>
       <img 
         className="detail-photo" 
         src={listing.imageUrl} 

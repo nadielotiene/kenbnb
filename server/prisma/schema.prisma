@@ -9,7 +9,8 @@ datasource db {
                 
 model Booking { 
   id            Int       @id @default(autoincrement())
-  listingId     Int
+  listingId     Int?
+  userId        Int?
   checkIn       String
   checkOut      String
   guests        Int
@@ -17,7 +18,8 @@ model Booking {
   status        String    @default("confirmed")
   createdAt     DateTime  @default(now())
 
-  listing       Listing   @relation(fields: [listingId], references: [id])
+  listing       Listing?   @relation(fields: [listingId], references: [id])
+  user          User?      @relation(fields: [userId], references: [id])
 }
 
 model Listing {
@@ -31,6 +33,15 @@ model Listing {
   endDate       String
   googleMapsUrl String
   isSuperhost   Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  bookings      Booking[]
+}               
+                
+model User {    
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String
+  name          String
   createdAt     DateTime  @default(now())
   bookings      Booking[]
 }               

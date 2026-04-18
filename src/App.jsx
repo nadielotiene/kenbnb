@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import ListingDetail from "./components/ListingDetail"
+import Auth from './components/Auth'
 import { useState, useRef, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -36,6 +37,24 @@ export default function App() {
       setHeart(data.map(item => ({ id: item.id, isFavorite: false })))
     })
   }, [filters])
+
+  // Add user state
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('user')
+    return saved ? JSON.parse(saved) : null
+  })
+
+  function handleLogin(userData) {
+    setUser(userData)
+    navigate('/')
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    setUser(null)
+    // navigate('/login')
+  }
 
   // Hero scroll
   useEffect(() => {
@@ -97,7 +116,7 @@ export default function App() {
 
   const homePage = (
     <>
-    <Navbar />
+    <Navbar user={user} onLogout={handleLogout} />
     <div className="hero-wrapper">
       <button 
         className="hero-arrow left" 
@@ -152,6 +171,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={homePage} />
         <Route path="/listings/:id" element={<ListingDetail />} />
+        <Route path="/login" element={<Auth onLogin={handleLogin} />} />
       </Routes>
     </>
   )
