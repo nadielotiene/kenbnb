@@ -3,6 +3,7 @@ import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js'
+import requireAuth from './middleware/auth.js';
 dotenv.config();
 
 const app = express();
@@ -46,7 +47,7 @@ app.get('/api/listings/:id', async (req, res) => {
 	}
 })
 
-app.post('/api/bookings', async (req, res) => {
+app.post('/api/bookings', requireAuth, async (req, res) => {
 	try {
 		const { listingId, checkIn, checkOut, guests, totalPrice } = req.body
 

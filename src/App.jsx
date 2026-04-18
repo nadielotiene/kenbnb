@@ -53,7 +53,6 @@ export default function App() {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     setUser(null)
-    // navigate('/login')
   }
 
   // Hero scroll

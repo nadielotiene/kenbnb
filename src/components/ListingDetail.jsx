@@ -29,7 +29,18 @@ export default function ListingDetail() {
   }
 
   async function handleBooking() {
+    const token = localStorage.getItem('token')
+    console.log('token:', token)
+
+    if (!token) {
+      navigate('/login')
+      return
+    }
+
     const totalPrice = calculateTotal()
+    console.log('totalPrice:', totalPrice)
+    console.log('checkIn:', checkIn)
+    console.log('checkOut:', checkOut)
     if (!checkIn || !checkOut || totalPrice <= 0) {
       setBookingStatus('error')
       return
@@ -38,7 +49,10 @@ export default function ListingDetail() {
     try {
       const res = await fetch('http://localhost:3001/api/bookings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify({
           listingId: parseInt(id),
           checkIn,

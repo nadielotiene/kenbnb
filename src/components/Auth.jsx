@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 export default function Auth({ onLogin }) {
-	const [isLogin, setIsLogin] = useState(true)
+	const [searchParams] = useSearchParams()
+	const [isLogin, setIsLogin] = useState(searchParams.get('mode') !== 'signup')
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
