@@ -35,11 +35,13 @@ export default function App() {
     
 
     fetch(`${API_URL}/api/listings?${params}`)
-    .then(res => res.json())
-    .then(data => {
-      setListings(data)
-      setHeart(data.map(item => ({ id: item.id, isFavorite: false })))
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setListings(data)
+          setHeart(data.map(item => ({ id: item.id, isFavorite: false })))
+        }
+      })
   }, [filters])
 
   // Add user state
