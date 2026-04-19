@@ -127,7 +127,6 @@ export default function App() {
 
   const homePage = (
     <>
-    <Navbar user={user} onLogout={handleLogout} />
     <div className="hero-wrapper">
       <button 
         className="hero-arrow left" 
@@ -170,7 +169,10 @@ export default function App() {
     </div>
 
       <section className="cards-list">
-        {cards}
+        {cards.length > 0
+          ? cards
+          : <p className="no-results">No listings found for this category</p>
+        }
       </section>
       <Footer />
     </>
@@ -178,7 +180,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={homePage} />
         <Route path="/listings/:id" element={<ListingDetail />} />
