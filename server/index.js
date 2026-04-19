@@ -22,6 +22,7 @@ app.get('/api/listings', async (req, res) => {
 				...(location && {
 					location: {
 						contains: location,
+						mode: 'insensitive'
 					}
 				}),
 				...(minPrice && { price: { gte: parseFloat(minPrice) } }),
