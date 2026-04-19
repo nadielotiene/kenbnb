@@ -33,6 +33,7 @@ model Listing {
   endDate       String
   googleMapsUrl String
   isSuperhost   Boolean   @default(false)
+  category      String    @default("Trending")
   createdAt     DateTime  @default(now())
   bookings      Booking[]
 }               

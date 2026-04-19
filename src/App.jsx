@@ -19,7 +19,8 @@ export default function App() {
   const [filters, setFilters] = useState({
     location: '',
     minPrice: '',
-    maxPrice: ''
+    maxPrice: '',
+    category: '',
   })
 
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ export default function App() {
     if (filters.location) params.append('location', filters.location)
     if (filters.minPrice) params.append('minPrice', filters.minPrice)
     if (filters.maxPrice) params.append('maxPrice', filters.maxPrice)
+    if (filters.category) params.append('category', filters.category)
+    
 
     fetch(`${API_URL}/api/listings?${params}`)
     .then(res => res.json())
@@ -111,7 +114,15 @@ export default function App() {
   })
 
   const hero = iconData.map(icon => (
-      <Hero key={icon.id} {...icon} />
+      <Hero 
+        key={icon.id} 
+        {...icon} 
+        isActive={filters.category === icon.alt}
+        onClick={() => setFilters(prev => ({
+          ...prev,
+          category: prev.category === icon.alt ? '' : icon.alt
+        }))}
+      />
   ))
 
   const homePage = (

@@ -2,6 +2,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+
+  await prisma.listing.deleteMany()
+
   await prisma.listing.createMany({
     data: [
       {
@@ -14,6 +17,7 @@ async function main() {
         endDate: "20",
         googleMapsUrl: "https://maps.google.com",
         isSuperhost: true,
+        category: "Beachfront",
       },
       {
         title: "Mountain Cabin Retreat",
@@ -25,6 +29,7 @@ async function main() {
         endDate: "12",
         googleMapsUrl: "https://maps.google.com",
         isSuperhost: false,
+        category: "Cabins",
       },
       {
         title: "Downtown Loft",
@@ -36,6 +41,7 @@ async function main() {
         endDate: "7",
         googleMapsUrl: "https://maps.google.com",
         isSuperhost: true,
+        category: "Rooms",
       },
       {
         title: "Lakefront Cottage",
@@ -47,6 +53,7 @@ async function main() {
         endDate: "17",
         googleMapsUrl: "https://maps.google.com",
         isSuperhost: false,
+        category: "Lakefront",
       },
       {
         title: "Tropical Villa",
@@ -58,6 +65,7 @@ async function main() {
         endDate: "27",
         googleMapsUrl: "https://maps.google.com",
         isSuperhost: true,
+        category: "Mansions",
       },
     ]
   })

@@ -15,19 +15,22 @@ app.use('/api/auth', authRoutes)
 
 app.get('/api/listings', async (req, res) => {
   try {
-		const { location, minPrice, maxPrice } = req.query
+		const { location, minPrice, maxPrice, category } = req.query
 
 		const where = {}
 
-			if (location) {
-				where.location = { contains: location, mode: 'insensitive' }
-			}
-			if (minPrice) {
-				where.price = { ...where.price, gte: parseFloat(minPrice) }
-			}
-			if (maxPrice) {
-				where.price = { ...where.price, lte: parseFloat(maxPrice) }
-			}
+		if (location) {
+			where.location = { contains: location, mode: 'insensitive' }
+		}
+		if (minPrice) {
+			where.price = { ...where.price, gte: parseFloat(minPrice) }
+		}
+		if (maxPrice) {
+			where.price = { ...where.price, lte: parseFloat(maxPrice) }
+		}
+		if (category) {
+			where.category = { equals: category, mode: 'insensitive' }
+		}
 
 		const listings = await prisma.listing.findMany({ where });
 		res.json(listings);
