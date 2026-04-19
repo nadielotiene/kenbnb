@@ -35,7 +35,6 @@ app.get('/api/listings', async (req, res) => {
 		const listings = await prisma.listing.findMany({ where });
 		res.json(listings);
 	} catch (error) {
-		console.log('Listings error:', error.message)
 		res.status(500).json({ error: 'Something went wrong '});
 	}
 })
