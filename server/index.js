@@ -17,19 +17,19 @@ app.get('/api/listings', async (req, res) => {
   try {
 		const { location, minPrice, maxPrice } = req.query
 
-		const listings = await prisma.listing.findMany({
-			where: {
-				...(location && {
-					location: {
-						contains: location,
-						mode: 'insensitive'
-					}
-				}),
-				...(minPrice && { price: { gte: parseFloat(minPrice) } }),
-				...(maxPrice && { price: { lte: parseFloat(maxPrice) } }),
-			}
-		});
+		const where = {}
 
+			if (location) {
+				where.location = { contains: location, mode: 'insensitive' }
+			}
+			if (minPrice) {
+				where.price = { ...where.price, gte: parseFloat(minPrice) }
+			}
+			if (maxPrice) {
+				where.price = { ...where.price, lte: parseFloat(maxPrice) }
+			}
+
+		const listings = await prisma.listing.findMany({ where });
 		res.json(listings);
 	} catch (error) {
 		res.status(500).json({ error: 'Something went wrong '});
