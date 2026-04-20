@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
-export default function Navbar({ user, onLogout }) {
+export default function Navbar({ user, onLogout, filters, onFilterChange }) {
 	const navigate = useNavigate()
 	const [dropdownOpen, setDropdownOpen] = useState(false)
 	const dropdownRef = useRef(null)
@@ -25,9 +25,29 @@ export default function Navbar({ user, onLogout }) {
 				</h2>
 			</a>
 			<div className="search-btn">
-				<span className="full-text">Anywhere ⎪ Any week ⎪ Add guests</span> 
-				<span className="mid-text">Start your search</span> 
-				<span className="short-text">Search</span> 
+				<input 
+					className="nav-search-input"
+					type="text"
+					placeholder="Anywhere"
+					value={filters?.location || ""}
+					onChange={e => onFilterChange({ location: e.target.value })}
+				/>
+				<span className="nav-divider">|</span>
+				<input 
+					className="nav-search-input nav-price-input"
+					type="number" 
+					placeholder="Min $"
+					value={filters?.minPrice || ""}
+					onChange={e => onFilterChange({ minPrice: e.target.value })}
+				/>
+				<span className="nav-divider">|</span>
+				<input 
+					className="nav-search-input nav-price-input"
+					type="number" 
+					placeholder="Max $"
+					value={filters?.maxPrice || ""}
+					onChange={e => onFilterChange({ maxPrice: e.target.value })}
+				/>
 				<img className="search-icon" src="/search.png" alt="search" />
 			</div>
 

@@ -145,31 +145,6 @@ export default function App() {
       >›</button>
     </div>
 
-    <div className="filters">
-      <input 
-        className="location"
-        type="text"
-        placeholder="Search by location..."
-        value={filters.location}
-        onChange={e => setFilters(prev => ({ ...prev, location: e.target.value }))}
-      />
-      <input 
-        className="min-price"
-        type="number"
-        placeholder="Min price"
-        value={filters.minPrice}
-        onChange={e => setFilters(prev => ({ ...prev, minPrice: e.target.value }))}
-      />
-      <input 
-        className="max-price"
-        type="number"
-        placeholder="Max price"
-        value={filters.maxPrice}
-        onChange={e => setFilters(prev => ({ ...prev, maxPrice: e.target.value }))}
-      />
-      {/* <div className="filter__btn"><img className="search-icon" src="/search.png" alt="search" /></div> */}
-    </div>
-
       <section className="cards-list">
         {cards.length > 0
           ? cards
@@ -182,7 +157,12 @@ export default function App() {
 
   return (
     <>
-      <Navbar user={user} onLogout={handleLogout} />
+      <Navbar 
+        user={user} 
+        onLogout={handleLogout} 
+        filters={filters}
+        onFilterChange={(newFilters) => setFilters(prev => ({ ...prev, ...newFilters }))}
+      />
       <Routes>
         <Route path="/" element={homePage} />
         <Route path="/listings/:id" element={<ListingDetail />} />
