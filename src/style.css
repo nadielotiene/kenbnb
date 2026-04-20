@@ -8,16 +8,11 @@ body {
     margin: 0;
 }
 
-/* $grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1400px
-); */
-
 /*~~~~~~~~~~~~~~~Navbar~~~~~~~~~~~~~~~*/
+
+a {
+  text-decoration: none;
+}
 
 nav, .hero-section {
     position: fixed;
@@ -39,6 +34,9 @@ nav, .hero-section {
     display: flex;
     flex-direction: row;
     align-items: center;
+    min-width: 30px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo {
@@ -72,6 +70,9 @@ button, .logo, .nav-title {
     border: #DDD solid 1px;
     box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
     margin: 0 1rem;
+
+    flex: 1;
+    max-width: 500px;
 }
 
 .mid-text {
@@ -94,6 +95,8 @@ button, .logo, .nav-title {
     display: flex;
     align-items: center;
     margin-right: 30px;
+    /* min-width: 150px; */
+    justify-content: flex-end;
 }
 
 .render-btn, .globe-btn, .user-menu-btn {
@@ -252,45 +255,17 @@ button, .logo, .nav-title {
 
 /*~~~~~~~~~~~~~~~Card~~~~~~~~~~~~~~~*/
 
-/* --- */
-/* .filters {
-  display: flex;
-  justify-content: center;
-  margin: 180px 20px 0 20px;
-  padding: 16px;
-}
-
-.filters input {
-    padding: 10px 16px;
-    border: #DDD solid 1px;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    outline: none;
-    width: 100%;
-}
-
-.location { border-radius: 100px 0 0 100px; }
-
-.max-price { border-radius: 0 100px 100px 0; }
-
-.filters input:focus {
-  border-color: #FF595F;
-} */
-/* --- */
-
 .cards-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    /* margin: 200px 20px 50px 20px; */
     margin: 20px 20px 50px 20px;
     margin-top: 200px;
 }
 
 .card-div {
     border-radius: 12px;
-    /* box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.3); */
     display: flex;
     flex-direction: column;
     margin: 12px;
@@ -303,7 +278,6 @@ button, .logo, .nav-title {
     cursor: pointer;
     object-fit: cover;
     height: 270px;
-    /* width: 270px; */
     width: 100%;
 }
 
@@ -342,7 +316,6 @@ button, .logo, .nav-title {
 /*~~~~~~~~~~~~~~~Footer~~~~~~~~~~~~~~~*/
 
 footer {
-    /* position: fixed; */
     bottom: 0;
     background-color: #FFF;
 }
@@ -380,42 +353,6 @@ a:hover {
     color: #000;
 }
 
-@media (max-width: 1040px) {
-    .footer-div {
-        height: 100px;
-    }
-    .render-btn, .globe-btn {
-        display: none;
-    }
-}
-
-@media (max-width: 695px) {
-    .nav-title { display: none; }
-}
-
-@media (max-width: 550px) {
-    .nav-price-input {
-        display: none;
-    }
-
-    .nav-divider {
-        display: none;
-    }
- 
-    .footer-div {
-        height: 200px;
-    }
-}
-
-@media (max-width: 430px) {
-    .logo {
-        display: none;
-    }
-
-    .user-menu-btn {
-        display: none;
-    }
-}
 
 /*~~~~~~~~~~~~~~~Listing Detail~~~~~~~~~~~~~~~*/
 
@@ -687,4 +624,92 @@ a:hover {
 
 .dropdown-item:hover {
     background-color: #F5F5F5;
+}
+
+/*~~~~~~~~~~~~~~~Mobile~~~~~~~~~~~~~~~*/
+
+.mobile-bottom-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #FFF;
+    border-top: #DDD solid 1px;
+    padding: 8px 0;
+    z-index: 3;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile-bottom-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+
+.mobile-bottom-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.mobile-bottom-trips {
+    font-size: 22px;
+}
+
+@media (max-width: 1040px) {
+    .footer-div {
+        height: 100px;
+    }
+    .render-btn, .globe-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 695px) {
+    .nav-title { display: none; }
+}
+
+@media (max-width: 550px) {
+    .nav-price-input {
+        display: none;
+    }
+
+    .nav-divider {
+        display: none;
+    }
+ 
+    .footer-div {
+        height: 200px;
+    }
+}
+
+@media (max-width: 430px) {
+    .logo {
+        display: none;
+    }
+
+    .user-menu-btn {
+        display: none;
+    }
+
+    .mobile-bottom-bar {
+        display: flex;
+    }
+
+    .card-list {
+        margin-bottom: 80px;
+    }
+
+    .footer-div {
+        margin-bottom: 80px;
+    }
 }
