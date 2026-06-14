@@ -63,7 +63,11 @@ export default function ListingDetail() {
         })
       })
 
-      const data = await res.json()
+      if (res.status === 401) {
+        localStorage.removeItem('token');
+        navigate('/login');
+        return;
+      }
 
       if (res.status === 409) {
         setBookingStatus('conflict')
