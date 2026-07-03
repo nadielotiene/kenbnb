@@ -58,7 +58,6 @@ kenbnb/
 │   ├── middleware/        # auth.js (JWT verification)
 │   ├── prisma/           # schema, migrations, seed
 │   └── index.js          # Express app + API routes
----
 ```
 
 ## Technical Callouts
@@ -106,48 +105,53 @@ next()
 
 ### Installation
 
-```
 1. Clone the repo
-\`\`\`bash
+
+```bash
 git clone https://github.com/nadielotiene/kenbnb.git
 cd kenbnb
-\`\`\`
+```
 
 2. Install frontend dependencies
-\`\`\`bash
+
+```bash
 npm install
-\`\`\`
+```
 
 3. Install backend dependencies
-\`\`\`bash
+
+```bash
 cd server
 npm install
-\`\`\`
+```
 
 4. Set up environment variables
-\`\`\`bash
+
+```bash
 # server/.env
 DATABASE_URL="postgresql://user:password@localhost:5432/kenbnb"
 JWT_SECRET="your-secret-key"
-\`\`\`
+```
 
 5. Run migrations and seed
-\`\`\`bash
+
+```bash
 cd server
 npx prisma migrate dev
 npx prisma db seed
-\`\`\`
+```
 
 6. Start the backend
-\`\`\`bash
+
+```bash
 node index.js
-\`\`\`
+```
 
 7. Start the frontend
-\`\`\`bash
+
+```bash
 # From root folder
 npm run dev
-\`\`\`
 ```
 ---
 
