@@ -46,6 +46,8 @@ A full-stack Airbnb clone built with React, Node.js, Express, Prisma, and Postgr
 ---
 
 ## Architecture
+
+```
 kenbnb/
 ├── src/                  # React frontend
 │   ├── components/       # Navbar, Card, Hero, ListingDetail, Auth
@@ -57,6 +59,7 @@ kenbnb/
 │   ├── prisma/           # schema, migrations, seed
 │   └── index.js          # Express app + API routes
 ---
+```
 
 ## Technical Callouts
 
@@ -103,6 +106,7 @@ next()
 
 ### Installation
 
+```
 1. Clone the repo
 \`\`\`bash
 git clone https://github.com/nadielotiene/kenbnb.git
@@ -144,7 +148,7 @@ node index.js
 # From root folder
 npm run dev
 \`\`\`
-
+```
 ---
 
 ## Screenshots
